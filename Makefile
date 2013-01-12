@@ -1,3 +1,5 @@
 
-iterable_iterator.png: iterable_iterator.dot
-	dot iterable_iterator.dot -Tpng -oiterable_iterator.png
+all: iterable_iterator.png game_machine.png
+
+%.png: %.dot
+	dot "$<" -Tpng -o"$@"

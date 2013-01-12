@@ -1,0 +1,18 @@
+digraph game_machine {
+	splines=true;
+	sep="+25,25";
+	graph [overlap=scalexy];
+	edge [fontsize=9];
+	waiting;
+	play;
+		win [style=dotted];
+		moved [style=dotted];
+	waiting -> play [label="guest joined"];
+	play -> waiting [label="guest\ndisconnected\nor timeout"];
+	play -> moved [label="guest input\n(disable timeout)"];
+	play -> moved [label="host\ninput"];
+	moved -> play;
+	moved -> win [label="win result"];
+	win -> play;
+	win -> waiting [label="full\nround\nplayed"];
+}
