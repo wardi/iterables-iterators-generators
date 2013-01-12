@@ -1,0 +1,15 @@
+digraph iterable_iterator {
+	subgraph cluster1 {
+		label = "iterables";
+		"..." [style=filled,color=white];
+		file;
+		dict;
+		str;
+		list;
+		subgraph cluster2 {
+			label = "iterators";
+			node [style=filled,color=white];
+			"have .next()"
+		}
+	}
+}
