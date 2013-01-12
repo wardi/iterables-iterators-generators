@@ -1,0 +1,15 @@
+digraph telnet_filter {
+	edge [fontsize=9];
+	normal;
+	command;
+	parameter;
+	subnegotiation;
+	normal -> normal [label="True"];
+	normal -> command [label="255:\nFalse"];
+	command -> normal [label="255:\nTrue"];
+	command -> subnegotiation [label="250:\nFalse"];
+	command -> parameter [label="False"];
+	parameter -> normal [label="False"];
+	subnegotiation -> subnegotiation [label="False"];
+	subnegotiation -> normal [label="240:\nFalse"];
+}
