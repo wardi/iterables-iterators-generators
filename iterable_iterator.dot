@@ -1,15 +1,16 @@
 digraph iterable_iterator {
 	subgraph cluster1 {
 		label = "iterables";
-		"..." [style=filled,color=white];
-		file;
+		"may create\niterators with\niter(x)" [style=filled,color=white];
+		"... " [style=filled,color=white];
 		dict;
 		str;
-		list;
+		list -> "track a 'position'\nand have .next()" [style=invis];
 		subgraph cluster2 {
+			"track a 'position'\nand have .next()" [style=filled,color=white];
+			"..." [style=filled,color=white];
+			file;
 			label = "iterators";
-			node [style=filled,color=white];
-			"have .next()"
 		}
 	}
 }
