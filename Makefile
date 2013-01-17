@@ -1,5 +1,5 @@
 
-all: iterable_iterator.png game_machine.png telnet_filter.png
+all: iterable_iterator.png game_machine.png telnet_filter.png everything.png
 
 %.png: %.dot
 	dot "$<" -Tpng -o"$@"
