@@ -3,9 +3,11 @@ digraph everything {
 	node [shape=box];
 	main [shape=hexagon];
 
-	main -> console_telnet_game_loop -> game_machine -> rock_paper_scissors;
+	main -> console_telnet_game_loop;
 	console_telnet_game_loop -> cbreak_keys;
 	console_telnet_game_loop -> telnet_keys -> telnet_filter;
 	telnet_keys -> socket_read_and_close;
+	console_telnet_game_loop -> game_machine -> running_avg;
+	game_machine -> rock_paper_scissors;
 	console_telnet_game_loop -> countdown_generator;
 }
