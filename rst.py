@@ -2,11 +2,12 @@
 
 import json
 import sys
+import itertools
 
 def restify(nb):
     out = []
     for w in nb['worksheets']:
-        for c in w['cells']:
+        for c in w['cells'][1:]:
             if c['cell_type'] == 'code':
                 out.extend(['', '.. sourcecode:: python', ''])
                 out.extend('    ' + line for line in c['input'])
@@ -25,9 +26,20 @@ def restify(nb):
                 for line in c['source']:
                     if line == '-----':
                         return out
-                    out.append(line.replace('`', '``'))
-                if out[-1] and out[-1][-1] == ':':
-                    out[-1] = out[-1][:-1] + ': '
+                    if line == '##':
+                        continue
+                    if not line.startswith('### '):
+                        out.append(line.replace('`', '``'))
+                        continue
+
+                    line = line[4:]
+                    target = '-'.join(''.join(chars)
+                        for k, chars in itertools.groupby(line.lower(),
+                        lambda x: 'a' <= x <= 'z') if k)
+                    out.extend(['.. _' + target + ':', ''])
+                    out.append('`' + line + '`__')
+                    out.append('-' * (len(line) + 4))
+                    out.extend(['', '__ ' + target + '_'])
 
 def unfunk(s):
     f = not_funk()
