@@ -28,6 +28,13 @@ def restify(nb):
                         return out
                     if line == '##':
                         continue
+                    if line.startswith('!['):
+                        cap, link = line.split('](',1)
+                        cap = cap[2:]
+                        link = link[:-1]
+                        out.extend(['.. image:: ' + link, '   :alt: ' + cap])
+                        continue
+
                     if not line.startswith('### '):
                         out.append(line.replace('`', '``'))
                         continue
