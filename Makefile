@@ -9,3 +9,6 @@ run.py: Iterables,\ Iterators,\ Generators.ipynb
 
 run: run.py
 	python run.py
+
+part1.rst: Iterables,\ Iterators,\ Generators.ipynb rst.py
+	python rst.py "$<" "$@"
