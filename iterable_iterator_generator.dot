@@ -1,0 +1,17 @@
+digraph iterable_iterator {
+    subgraph cluster1 {
+        label = "iterables";
+        "may create iterators with iter(x)" [style=filled,color=white];
+        "may create iterators with iter(x)" -> "track a 'position' and have .next()" [style=invis];
+        subgraph cluster2 {
+            label = "iterators";
+            "track a 'position' and have .next()" [style=filled,color=white];
+            "track a 'position' and have .next()" -> "created with a generator function or expression" [style=invis];
+            subgraph cluster3 {
+                label = "generators";
+                "created with a generator function or expression" [style=filled,color=white];
+            }
+
+        }
+    }
+}
