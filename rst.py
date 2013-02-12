@@ -10,10 +10,12 @@ def restify(nb):
         for c in w['cells'][1:]:
             if c['cell_type'] == 'code':
                 out.extend(['', '.. sourcecode:: python', ''])
-                out.extend('    ' + line for line in c['input'])
+                out.extend('    ' + line for line in c['input'] if line != '##')
                 out.extend(['', '::', ''])
                 for o in c['outputs']:
                     if 'text' in o:
+                        if o['text'][:1] == [""]:
+                            del o['text'][0]
                         out.extend('    ' + line for line in o['text'])
                     elif 'traceback' in o:
                         for line in o['traceback']:
@@ -26,8 +28,6 @@ def restify(nb):
                 for line in c['source']:
                     if line == '-----':
                         return out
-                    if line == '##':
-                        continue
                     if line.startswith('!['):
                         cap, link = line.split('](',1)
                         cap = cap[2:]
