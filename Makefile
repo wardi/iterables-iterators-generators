@@ -5,11 +5,11 @@ all: iterable_iterator.png game_machine.png telnet_filter.png everything.png \
 %.png: %.dot
 	dot "$<" -Tpng -o"$@"
 
-run.py: Iterables,\ Iterators,\ Generators.ipynb
-	python extract.py > run.py
+rps_server.py: Iterables,\ Iterators,\ Generators.ipynb
+	python extract.py > $@
 
-run: run.py
-	python run.py
+run: rps_server.py
+	python $<
 
 part1.rst: Iterables,\ Iterators,\ Generators.ipynb rst.py
 	python rst.py "$<" "$@"
