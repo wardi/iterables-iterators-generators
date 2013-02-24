@@ -8,4 +8,4 @@ The presentation consists of an ipython notebook and supporting diagrams.
 
 The included Makefile can generate the diagrams using Graphviz, and it
 can extract the portions of the presentation that make a complete,
-working python application as run.py.
+working python application as rps_server.py.
